@@ -3,7 +3,7 @@
     "description":"SamsonCMS WYSIWYG input field module",
     "author":"Vitaly Iegorov <egorov@samsonos.com>",
     "require":{
-        "samsonos/cms_field":"*"
+        "samsonos/cms_input":"*"
     },
     "license":"Open Software License (OSL) v 3.0",
     "homepage":"http://samsonos.com/",

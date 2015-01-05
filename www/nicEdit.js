@@ -269,8 +269,8 @@ var nicEditorConfig = bkClass.extend({
 		'hr' : {name : __('Horizontal Rule'), command : 'insertHorizontalRule', noActive : true}
 	},
 	iconsPath : '/cms/resourcer/cms_input_wysiwyg?p=www/img/nicEditorIcons.gif',
-	buttonList : ['save','bold','italic','underline','left','center','right','justify','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor'],
-	iconList : {"xhtml":1,"bgcolor":2,"forecolor":3,"bold":4,"center":5,"hr":6,"indent":7,"italic":8,"justify":9,"left":10,"ol":11,"outdent":12,"removeformat":13,"right":14,"save":25,"strikethrough":16,"subscript":17,"superscript":18,"ul":19,"underline":20,"image":21,"link":22,"unlink":23,"close":24,"arrow":26,"upload":27}
+	buttonList : ['save','bold','italic','underline','left','center','right','justify','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image', 'video', 'upload','link','unlink','forecolor','bgcolor'],
+	iconList : {"xhtml":1,"bgcolor":2,"forecolor":3,"bold":4,"center":5,"hr":6,"indent":7,"italic":8,"justify":9,"left":10,"ol":11,"outdent":12,"removeformat":13,"right":14,"save":25,"strikethrough":16,"subscript":17,"superscript":18,"ul":19,"underline":20,"image":21,"link":22,"unlink":23,"close":24,"arrow":26,"upload":27,"video":28}
 	
 });
 /* END CONFIG */
@@ -1342,7 +1342,6 @@ var nicImageButton = nicEditorButton.extend({
                         try {
                             response = JSON.parse(response);
                             cEditorArea.append(response.tag);
-                            console.log(response.tag);
                             cEditorArea.focus();
 
                         } catch (e) {
@@ -1402,6 +1401,46 @@ var nicImageButton = nicEditorButton.extend({
 });
 
 nicEditors.registerPlugin(nicPlugin,nicImageOptions);
+
+
+
+
+/* START CONFIG */
+var nicVideoOptions = {
+    buttons : {
+        'video' : {name : 'Add Video', type : 'nicVideoButton', tags : ['IFRAME'], id:'btnUpload'}
+    }
+
+};
+/* END CONFIG */
+
+var nicVideoButton = nicEditorAdvancedButton.extend({
+
+    width: '425px',
+
+    addPane: function(){
+        this.ln = this.ne.selectedInstance.selElm().parentTag('IFRAME');
+        this.addForm({
+            '' : {type : 'title', txt : 'Add/Edit Video'},
+            'frame' : {type : 'text', txt : 'Frame', value : '', style : {width: '350px'}}
+        },this.ln);
+    },
+
+    submit : function(e) {
+        var frame = this.inputs['frame'].value;
+        if(frame == "") {
+            alert("You must enter an iframe tag to add Video");
+            return false;
+        }
+        this.removePane();
+
+        if(!this.ln) {
+            this.ne.nicCommand("insertHTML",frame);
+        }
+    }
+});
+
+nicEditors.registerPlugin(nicPlugin,nicVideoOptions);
 
 
 

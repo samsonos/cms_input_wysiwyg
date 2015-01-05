@@ -1298,37 +1298,74 @@ var nicImageOptions = {
 var nicImageButton = nicEditorButton.extend({	
 	init:function()
 	{
-        // TODO: Add support to upload images into wysiwyg
-		/*// Обработчик загрузки картинки/файла в материал
-		s( this.button ).FormContainer({
-			filler : 'material/ajax_upload_form',
-			placeMode : 'creatorOver',
-			submitHandler : function( serverResponce, formSubmited, btnSubmit ) 
-			{
-				// Получим закладки
-				var tabs_data = s('#material-tabs').tabs();
-						
-				// Преобразуем ответ от сервера в объект
-				try{serverResponce = JSON.parse(serverResponce);}catch(e){};
 
-				// Попытаемся получить необходимый ТЭГ от сервера
-				var recievedResource = s( serverResponce.tag );
-				
-				// Получим редактор в текущей закладке
-				var cEditorArea = s( '.nicEdit-main', tabs_data.activeTab );
-				
-				// Если в текущей закладке найден редактор, и ответ от сервера разпознан
-				if( cEditorArea.length && serverResponce )
-				{		
-					// Выведем полученный элемент в редактор материала
-					cEditorArea.append( recievedResource );
-				}				
-			}
-		});	*/
+        // TODO: Add support to upload images into wysiwyg
+		// Обработчик загрузки картинки/файла в материал
+		//s( this.button ).FormContainer({
+		//	filler : 'material/ajax_upload_form',
+		//	placeMode : 'creatorOver',
+		//	submitHandler : function( serverResponce, formSubmited, btnSubmit )
+		//	{
+		//		// Получим закладки
+		//		var tabs_data = s('#material-tabs').tabs();
+        //
+		//		// Преобразуем ответ от сервера в объект
+		//		try{serverResponce = JSON.parse(serverResponce);}catch(e){};
+        //
+		//		// Попытаемся получить необходимый ТЭГ от сервера
+		//		var recievedResource = s( serverResponce.tag );
+        //
+		//		// Получим редактор в текущей закладке
+		//		var cEditorArea = s( '.nicEdit-main', tabs_data.activeTab );
+        //
+		//		// Если в текущей закладке найден редактор, и ответ от сервера разпознан
+		//		if( cEditorArea.length && serverResponce )
+		//		{
+		//			// Выведем полученный элемент в редактор материала
+		//			cEditorArea.append( recievedResource );
+		//		}
+		//	}
+		//});
+        s(this.button).click(function(){
+            var form = s('<div class="__wysiwyg_upload_image"><div class="__wysiwyg_upload_btn"></div></div>');
+            var button = s('.__wysiwyg_upload_btn', form);
+            button.fileUpload({
+                url: 'samson_cms_input_wysiwyg/upload',
+                successFile: function(response, progressBlock){
+                    var tabs_data = s('#material-tabs').tabs();
+                    var cEditorArea = s( '.nicEdit-main', tabs_data.activeTab );
+                    if (cEditorArea.length && response) {
+                        s('.__progress_bar p', progressBlock).width('100%');
+                        s('.__progress_text', progressBlock).html('Загрузка завершена');
+                        progressBlock.removeClass('__upload_process');
+                        progressBlock.addClass('__upload_complete');
+                        try {
+                            response = JSON.parse(response);
+                            cEditorArea.append(response.tag);
+                            console.log(response.tag);
+                            cEditorArea.focus();
+
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    }
+                },
+                completeAll: function(){
+                    setTimeout(function(){
+                        box.close();
+                    }, 1000);
+                }
+            });
+            var box = tinybox(form, true, true, true);
+            box.hide();
+            s('body').append(form);
+            box.calculate();
+            box.show();
+        });
 	},
 	
 	addPane : function() {		
-		
+
 		/*
 		this.im = this.ne.selectedInstance.selElm().parentTag('IMG');
 		

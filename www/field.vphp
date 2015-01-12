@@ -1,0 +1,2 @@
+<textarea type="text" style="display:none" class="__hidden"><?php iv('field_value')?></textarea>
+<textarea type="text" class="__input" id="<?php iv('field_textarea_id')?>" style="display:none"><?php iv('field_value')?></textarea>

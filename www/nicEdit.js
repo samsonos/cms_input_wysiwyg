@@ -1408,7 +1408,7 @@ nicEditors.registerPlugin(nicPlugin,nicImageOptions);
 /* START CONFIG */
 var nicVideoOptions = {
     buttons : {
-        'video' : {name : 'Add Video', type : 'nicVideoButton', tags : ['IFRAME'], id:'btnUpload'}
+        'video' : {name : 'Add Video from YouTube', type : 'nicVideoButton', tags : ['IFRAME'], id:'btnUpload'}
     }
 
 };
@@ -1421,18 +1421,41 @@ var nicVideoButton = nicEditorAdvancedButton.extend({
     addPane: function(){
         this.ln = this.ne.selectedInstance.selElm().parentTag('IFRAME');
         this.addForm({
-            '' : {type : 'title', txt : 'Add/Edit Video'},
-            'frame' : {type : 'text', txt : 'Frame', value : '', style : {width: '350px'}}
+            '' : {type : 'title', txt : 'Add Video from YouTube'},
+            'frame' : {type : 'text', txt : 'Url', value : '', style : {width: '350px'}},
+            'width' : {type : 'text', txt : 'Width', value : '560', style : {width: '50px'}},
+            'height' : {type : 'text', txt : 'Height', value : '315', style : {width: '50px'}}
         },this.ln);
     },
 
     submit : function(e) {
         var frame = this.inputs['frame'].value;
-        if(frame == "") {
-            alert("You must enter an iframe tag to add Video");
+        var width = this.inputs['width'].value;
+        var height = this.inputs['height'].value;
+
+        if (frame == "") {
+            alert("You must enter an Url address to add Video");
             return false;
         }
+
+        if (width < 100 || width > 1000) {
+            alert("Incorrect width value");
+            return false;
+        }
+
+        if (height < 100 || height > 1000) {
+            alert("Incorrect height value");
+            return false;
+        }
+
         this.removePane();
+
+        // Get youtube video identifier for creating iframe tag
+        var video_id = frame.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+        frame = '<iframe width="' + width + '" height="' + height + '"' +
+                ' src="//www.youtube.com/embed/'+video_id[1] +
+                '" frameborder="0" allowfullscreen></iframe>';
 
         if(!this.ln) {
             this.ne.nicCommand("insertHTML",frame);

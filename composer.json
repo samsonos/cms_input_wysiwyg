@@ -1,7 +1,16 @@
 {
     "name":"samsonos/cms_input_wysiwyg",
     "description":"SamsonCMS WYSIWYG input field module",
-    "author":"Vitaly Iegorov <egorov@samsonos.com>",
+    "authors":[
+        {
+            "name":"Vitaly Iegorov",
+            "email":"egorov@samsonos.com"
+        },
+        {
+            "name":"Maxim Omelchenko",
+            "email":"omelchenko@samsonos.com"
+        }
+    ],
     "require":{
         "samsonos/cms_input":"*",
         "samsonos/js_core":"*"

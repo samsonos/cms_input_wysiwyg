@@ -1330,7 +1330,7 @@ var nicImageButton = nicEditorButton.extend({
             var form = s('<div class="__wysiwyg_upload_image"><div class="__wysiwyg_upload_btn"></div></div>');
             var button = s('.__wysiwyg_upload_btn', form);
             button.fileUpload({
-                url: 'samson_cms_input_wysiwyg/upload',
+                url: 'samsoncms_input_wysiwyg_application/upload',
                 successFile: function(response, progressBlock){
                     var tabs_data = s('#material-tabs').tabs();
                     var cEditorArea = s( '.nicEdit-main', tabs_data.activeTab );

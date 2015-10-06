@@ -1,19 +1,6 @@
 $(document).ready(function() {
     $('.__wysiwyg .__input').summernote({
-        toolbar: [
-            ['style', ['style']],
-            ['text', ['bold', 'italic', 'underline', 'color', 'clear']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']],
-            ['size', ['fontsize']],
-            ['font', ['fontname']],
-        ],
         fontsize: '18px',
-        onblur: function() {
-            var text = $('#editor').code();
-            text = text.replace("<br>", " ");
-            $('#description').val(text);
-        },
         height: 425                 // set editor height
     });
 });

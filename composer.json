@@ -1,26 +1,27 @@
 {
-    "name":"samsonos/cms_input_wysiwyg",
-    "description":"SamsonCMS WYSIWYG input field module",
-    "authors":[
-        {
-            "name":"Vitaly Iegorov",
-            "email":"egorov@samsonos.com"
-        },
-        {
-            "name":"Maxim Omelchenko",
-            "email":"omelchenko@samsonos.com"
-        }
-    ],
-    "require":{
-        "samsonos/cms_input":"*",
-        "samsonos/js_core":"*"
+  "name": "samsonos/cms_input_wysiwyg",
+  "description": "SamsonCMS WYSIWYG input field module",
+  "authors": [
+    {
+      "name": "Vitaly Iegorov",
+      "email": "egorov@samsonos.com"
     },
-    "license":"Open Software License (OSL) v 3.0",
-    "homepage":"http://samsonos.com/",
-    "autoload": {
-        "classmap": ["src/"],
-        "psr-0": {
-            "samsoncms\\input\\wysiwyg": "src/"
-        }
+    {
+      "name": "Maxim Omelchenko",
+      "email": "omelchenko@samsonos.com"
     }
+  ],
+  "require": {
+    "samsonos/cms_input": "*",
+    "samsonos/js_core": "*",
+    "samsonos/jquery": "*"
+  },
+  "license": "Open Software License (OSL) v 3.0",
+  "homepage": "http://samsonos.com/",
+  "autoload": {
+    "classmap": ["src/"],
+    "psr-0": {
+      "samsoncms\\input\\wysiwyg": "src/"
+    }
+  }
 }

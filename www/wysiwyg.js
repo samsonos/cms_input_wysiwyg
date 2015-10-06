@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $('.__wysiwyg .__input').summernote({
+        height: 425                 // set editor height
+    });
+});
+
 s('.__wysiwyg .__input').pageInit( function( textarea )
 {
 	/*// Create Select field instance with save handler
@@ -8,11 +14,8 @@ s('.__wysiwyg .__input').pageInit( function( textarea )
 		// Hide span
 		s('span',field).hide();
 
-		// Create editor
-		var ContentEditor = new nicEditor({fullPanel : true}).panelInstance( textarea.a('id') );
-
 		// Current value view
-		var sp = s('.nicEdit-main',field);
+		var sp = s('.note-editable.panel-body',field);
 
 		// Add special class to display as it was on site
 		sp.addClass('cms-content');

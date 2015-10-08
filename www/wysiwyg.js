@@ -1,29 +1,6 @@
-$(document).ready(updateSummernote);
 
-function updateSummernote() {
-    $('.__wysiwyg .__input').summernote({
-        fontsize: '18px',
-        // Handle image uploading
-        onImageUpload: function(files) {
-            if(files[0]) { // If we have file
-                // Call async file uploader from samsonphp/upload
-                asyncFileUploader(files[0], {
-                    // Get controller url from markup
-                    url:s('input[name=__imageupload_action]').val(),
-                    // Output received tag to current editor position
-                    successHandler:function(response){
-                        $(document.getSelection().anchorNode.parentNode).append(response.tag);
-                    }
-                });
-            }
-        },
-        height: 425                 // set editor height
-    });
-}
+SamsonCMS_InputWYSIWYG = function(textarea){
 
-s('.__wysiwyg .__input').pageInit(updateWysiwyg);
-
-function updateWysiwyg( textarea ) {
     var field = textarea.parent();
 
     // Current value view
@@ -75,4 +52,29 @@ function updateWysiwyg( textarea ) {
         }
     });
     /*});*/
-};
+}
+
+SamsonCMS_InputWYSIWYG_SUMMERNOTE = function(){
+    $('.__wysiwyg .__input').summernote({
+        fontsize: '18px',
+        // Handle image uploading
+        onImageUpload: function(files) {
+            if(files[0]) { // If we have file
+                // Call async file uploader from samsonphp/upload
+                asyncFileUploader(files[0], {
+                    // Get controller url from markup
+                    url:s('input[name=__imageupload_action]').val(),
+                    // Output received tag to current editor position
+                    successHandler:function(response){
+                        $(document.getSelection().anchorNode.parentNode).append(response.tag);
+                    }
+                });
+            }
+        },
+        height: 425                 // set editor height
+    });
+}
+
+// Bind input
+SamsonCMS_Input.bind(SamsonCMS_InputWYSIWYG_SUMMERNOTE, '.__wysiwyg .__input');
+SamsonCMS_Input.bind(SamsonCMS_InputWYSIWYG, '.__wysiwyg .__input');

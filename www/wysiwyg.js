@@ -1,4 +1,6 @@
-$(document).ready(function() {
+$(document).ready(updateSummernote);
+
+function updateSummernote() {
     $('.__wysiwyg .__input').summernote({
         fontsize: '18px',
         // Handle image uploading
@@ -17,9 +19,11 @@ $(document).ready(function() {
         },
         height: 425                 // set editor height
     });
-});
+}
 
-s('.__wysiwyg .__input').pageInit( function( textarea ) {
+s('.__wysiwyg .__input').pageInit(updateWysiwyg);
+
+function updateWysiwyg( textarea ) {
     var field = textarea.parent();
 
     // Current value view
@@ -71,4 +75,4 @@ s('.__wysiwyg .__input').pageInit( function( textarea ) {
         }
     });
     /*});*/
-});
+};

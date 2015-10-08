@@ -14,7 +14,7 @@
   "require": {
     "samsonos/cms_input": "*",
     "samsonos/js_core": "*",
-    "samsonos/jquery": "*"
+    "samsonos/php_jquery": "*"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsonos.com/",

@@ -45,7 +45,6 @@ class Application extends \samsoncms\input\Application
 
     /**
      * Change view of wysiwyg for changing dysplaying of field on table row
-     * TODO #update 3
      */
     public function renderForTable($input)
     {

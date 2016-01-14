@@ -15,7 +15,6 @@ class WYSIWYG extends Field
 
     /**
      * @param $view
-     * TODO #update 4
      */
     public function setDefautlView($view)
     {

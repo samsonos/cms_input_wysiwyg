@@ -1,0 +1,15 @@
+<a class="edit-value-wysiwyg" data-open-href=".popup-wysiwyg-content-<?php iv('objectId')?>" href="javascript:void(0)"><?php t('Edit value');?></a>
+<div class="popup-wysiwyg-content-<?php iv('objectId')?> edit-value-wysiwyg-content" style="display:none">
+    <div class="close-popup-wysiwyg-block">
+        <a class="close-popup-wysiwyg-block-a" data-close-href="popup-wysiwyg-content-<?php iv('objectId')?>"><?php t('Close')?></a>
+    </div>
+    <div class="__inputfield <?php iv('cssClass') ?> <?php isnv('value', '__empty')?>" >
+        <input type="hidden" name="__action" value="<?php iv('action')?>">
+        <input type="hidden" name="__entity" value="<?php iv('entity')?>">
+        <input type="hidden" name="__param" value="<?php iv('param')?>">
+        <input type="hidden" name="__obj_id" value="<?php iv('objectId')?>">
+        <input type="hidden" name="__empty_text" value="<?php t('Введите значение')?>">
+        <input type="hidden" name="__imageupload_action" value="<?php url_base($applicationId, 'upload')?>">
+        <?php iv('view')?>
+    </div>
+</div>

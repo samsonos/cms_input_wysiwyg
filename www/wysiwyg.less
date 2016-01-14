@@ -43,3 +43,26 @@
     border: 1px dashed #262626;
   }
 }
+
+.edit-value-wysiwyg-content{
+	@width: 600px;
+	width: @width;
+	height: 400px;
+	position: fixed;
+	z-index: 1000;
+	top: 100px;
+	left: 50%;
+	margin-left: -@width/2;
+	.note-toolbar.panel-heading{
+		background-color: #eee;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.close-popup-wysiwyg-block{
+		background-color: #eee;
+		padding: 10px;
+		text-align: right;
+		border-radius: 3px 3px 0 0;
+	}
+}
+

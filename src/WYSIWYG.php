@@ -12,4 +12,12 @@ class WYSIWYG extends Field
 {
     /** @var string Special CSS classname for nested field objects to bind JS and CSS */
     protected $cssClass = '__wysiwyg';
+
+    /**
+     * @param $view
+     */
+    public function setDefautlView($view)
+    {
+        $this->defaultView = $view;
+    }
 }

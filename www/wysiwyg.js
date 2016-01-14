@@ -1,6 +1,32 @@
 
 SamsonCMS_InputWYSIWYG = function(textarea){
 
+    /**
+     * Manage wysiwyg in popup
+     * Show wysiwyg in table as popup
+     * Get dom elements
+     */
+    var parentTable = textarea.parent().parent().parent();
+
+    // Handle click open and close
+    s('.edit-value-wysiwyg', parentTable).click(function(e) {
+
+        var parentBlock = s(e).parent(),
+            popupLocal = s('.edit-value-wysiwyg-content', parentBlock),
+            closeLink = s('.close-popup-wysiwyg-block-a', parentBlock);
+
+        // Show popup and loader
+        popupLocal.css('display', 'block');
+        loader.show('', true);
+
+        // Hide popup and loader
+        closeLink.unbind('click');
+        closeLink.click(function() {
+            popupLocal.css('display', 'none');
+            loader.hide('', true);
+        });
+    });
+
     var field = textarea.parent();
 
     // Current value view

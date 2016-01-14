@@ -18,6 +18,11 @@ class Application extends \samsoncms\input\Application
     /** @var string SamsonCMS field class */
     protected $fieldClass = '\samsoncms\input\wysiwyg\WYSIWYG';
 
+    public function init(array $params = array())
+    {
+        \samsonphp\event\Event::subscribe('samson.cms.input.table.render', array($this, 'renderForTable'));
+    }
+
     /**
      * Function to upload images into WYSIWYG
      *
@@ -36,5 +41,18 @@ class Application extends \samsoncms\input\Application
         }
         // Return result
         return $result;
+    }
+
+    /**
+     * Change view of wysiwyg for changing dysplaying of field on table row
+     * TODO #update 3
+     */
+    public function renderForTable($input)
+    {
+        // If there is right field then call renderer of this field
+        if ($input instanceof Application) {
+
+            $input->field->setDefautlView('indexTable');
+        }
     }
 }

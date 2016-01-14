@@ -1,7 +1,6 @@
 
 SamsonCMS_InputWYSIWYG = function(textarea){
 
-    // TODO #update 6
     /**
      * Manage wysiwyg in popup
      * Show wysiwyg in table as popup

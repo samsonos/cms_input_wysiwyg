@@ -101,6 +101,49 @@ SamsonCMS_InputWYSIWYG_SUMMERNOTE = function(){
     });
 }
 
+// The function is intended for cleaning html code
+SamsonCMS_InputWYSIWYG_ClearHtml = function(wysiwyg) {
+    // template for button
+    var templateButton = '<div class="btn-group clear-field">' +
+        '<button type="button" class="btn-default btn btn-sm" tabindex="-1">' +
+        '<i class="fa fa-recycle"></i>' +
+        '</button>' +
+        '</div>';
+
+    // Generate clear button
+    var butClear = s(templateButton).clone();
+
+    // Event click for clear button
+    butClear.click(function () {
+        // Content with html code
+        var content = s('.cms-content', wysiwyg);
+        // Url for async request
+        var urlRequest = s('input[name=__clearHtml_action]', wysiwyg).val();
+
+        // Create loader object
+        var loader = new Loader(wysiwyg);
+        loader.show();
+        // Send ajax request
+        s.ajax(urlRequest, function (response) {
+            // Parse response
+            response = JSON.parse(response);
+            // If status = 1 then ajax request success
+            if (response.status = 1) {
+                //Set clear html to wysiwyg
+                content.html(response.data);
+                // Set cursor
+                content.focus();
+            }
+            // Remove loader
+            loader.remove();
+        }, {html: content.html()});
+    });
+
+    // Append button clear to wysiwyg
+    s('.panel-heading', wysiwyg).append(butClear);
+};
+
 // Bind input
 SamsonCMS_Input.bind(SamsonCMS_InputWYSIWYG_SUMMERNOTE, '.__wysiwyg .__input');
 SamsonCMS_Input.bind(SamsonCMS_InputWYSIWYG, '.__wysiwyg .__input');
+SamsonCMS_Input.bind(SamsonCMS_InputWYSIWYG_ClearHtml, '.__inputfield.__wysiwyg');

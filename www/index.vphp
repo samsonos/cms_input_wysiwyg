@@ -5,5 +5,6 @@
 	<input type="hidden" name="__obj_id" value="<?php iv('objectId')?>">
 	<input type="hidden" name="__empty_text" value="<?php t('Введите значение')?>">
     <input type="hidden" name="__imageupload_action" value="<?php url_base($applicationId, 'upload')?>">
+     <input type="hidden" name="__clearHtml_action" value="<?php url_base($applicationId, 'clearHtml')?>">
 	<?php iv('fieldView')?>
 </div>
